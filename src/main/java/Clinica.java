@@ -51,6 +51,43 @@ public class Clinica
 
     private static void MenuRegistro(Scanner scanner)
     {
+        System.out.println(" ");
+        System.out.println(" ====== MÓDULO DE REGISTRO ======");
+        System.out.println(" --------------------------------");
+        System.out.println(" ");
+        System.out.print("Ingresa tu Nombre(s): ");
+        String nombres = scanner.nextLine();
+        System.out.println(" ");
+        System.out.print("Ingresa tus Apellidos: ");
+        String apellidos = scanner.nextLine();
+        System.out.println(" ");
+        System.out.print("Ingresa tu fecha de nacimiento (DD/MM/AAAA): ");
+        String fechaNacimiento = scanner.nextLine();
+        System.out.println(" ");
+        System.out.print("Ingresa Correo Electrónico: ");
+        String correo = scanner.nextLine();
+        System.out.println(" ");
+        System.out.print("Ingresa número de teléfono: ");
+        String telefono = scanner.nextLine();
+        System.out.println(" ");
+        System.out.print("Ingresa una contraseña: ");
+        String password = scanner.nextLine();
+        System.out.println(" ");
+        System.out.print("Confirmación de contraseña: ");
+        String confirmarPassword = scanner.nextLine();
+        System.out.println(" ");
+
+        if (password.equals(confirmarPassword))
+        {
+            System.out.println(" ");
+            System.out.println("¡Registro exitoso! Bienvenido a DentalConnect, " + nombres + " " + apellidos + ".");
+        }
+        else
+        {
+            System.out.println(" ");
+            System.out.println("Error: Las contraseñas no coinciden. Intenta registrarte de nuevo.");
+            System.out.println(" ");
+        }
     }
 
     private static void MenuPublico(Scanner scanner)
@@ -58,6 +95,7 @@ public class Clinica
         int opcion = 0;
         while (opcion != 3)
         {
+            System.out.println(" ");
             System.out.println("======== VISOR PÚBLICO ========");
             System.out.println("----------------------");
             System.out.print("Elige una opción: ");
@@ -65,7 +103,6 @@ public class Clinica
             System.out.println("1. Ver Ubicación del Consultorio");
             System.out.println("2. Ver Catálogo de Servicios y Precios");
             System.out.println("3. Regresar");
-            System.out.print("Elige una opción: ");
 
             opcion = scanner.nextInt();
             scanner.nextLine();
@@ -73,10 +110,16 @@ public class Clinica
             switch (opcion)
             {
                 case 1:
-                    System.out.println("Ubicación: Avenida Chiapas N. 388, Ecatepec.");
+                    System.out.println(" ");
+                    System.out.println("   ======== UBICACIÓN ========   ");
+                    System.out.println(" ------------------------------- ");
+                    System.out.println("Avenida Chiapas N. 388, Ecatepec.");
+                    System.out.println(" ");
                     break;
                 case 2:
-                    System.out.println("==== CATÁLOGO DE SERVICIOS Y PRECIOS ====");
+                    System.out.println(" ");
+                    System.out.println(" ==== CATÁLOGO DE SERVICIOS Y PRECIOS ==== ");
+                    System.out.println(" ----------------------------------------- ");
                     System.out.println("* Ortodoncia: $15,000");
                     System.out.println("* Endodoncia: $2,500");
                     System.out.println("* Extracción: $700");

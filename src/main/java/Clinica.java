@@ -1,5 +1,4 @@
 import java.util.Scanner;
-
 public class Clinica
 {
     public static void main(String[] args)
@@ -50,14 +49,10 @@ public class Clinica
         System.out.println(" ");
         System.out.println( " ============ INICIO DE SESIÓN =========== ");
         System.out.println(" ------------------------------------------ ");
-        System.out.print("Ingresa Correo Electrónico: ");
-        String correo = scanner.nextLine();
-        System.out.print("Ingrese su contraseña: ");
-        String password = scanner.nextLine();
-
         System.out.println(" ");
         System.out.println(" ===== SELECCIONE UNA OPCIÓN =====");
         System.out.print("Elige una opción: ");
+        System.out.println(" ");
         System.out.println("1. Paciente");
         System.out.println("2. Doctor");
         System.out.println(" ");
@@ -67,13 +62,44 @@ public class Clinica
 
         if (tipoUsuario == 1)
         {
+            System.out.println(" ===== PACIENTE ===== ");
+            System.out.println(" -------------------- ");
+            System.out.print("Ingresa tu Nombre(s) y apellidos: ");
+            String nombres = scanner.nextLine();
+            System.out.println(" ");
+            System.out.print("Ingresa Correo Electrónico: ");
+            String correo = scanner.nextLine();
+            System.out.print("Ingrese su contraseña: ");
+            String password = scanner.nextLine();
+
             menuPaciente(scanner);
+        }
+        else if (tipoUsuario == 2)
+        {
+            System.out.println(" ===== DOCTOR ===== ");
+            System.out.println(" -------------------- ");
+            System.out.print("Ingresa tu Nombre(s) y apellidos: ");
+            String nombreDoctor = scanner.nextLine();
+            System.out.print("Ingresa Cédula Profecional: ");
+            String cedulaDoctor = scanner.nextLine();
+            System.out.print("Ingresa Correo Electrónico: ");
+            String correoDoctor = scanner.nextLine();
+            System.out.print("Ingrese su contraseña: ");
+            String passwordDoctor = scanner.nextLine();
+            System.out.println(" ");
+
+            System.out.println(" Bienvenido Dr(a)" + nombreDoctor + "( Cédula:" + cedulaDoctor + ")!");
+            MenuDoctor(scanner);
         }
         else
         {
-            System.out.println("Acceso de Doctor (Módulos de administración).");
+            System.out.println(" Opción no válida. ");
         }
 
+    }
+
+    private static void MenuDoctor(Scanner scanner)
+    {
     }
 
     private static void menuPaciente(Scanner scanner)

@@ -113,9 +113,8 @@ public class Clinica
             System.out.println(" =================================== ");
             System.out.println(" ");
             System.out.println(" Elige una opción: ");
-            System.out.println("1. Gestión de Agenda y Citas (Agendar / Modificar / Cancelar)");
-            System.out.println("2. Ver mi Expediente / Historia Clínica");
-            System.out.println("3. Cerrar Sesión");
+            System.out.println("1. Agenda y Citas (Agendar / Modificar / Cancelar)");
+            System.out.println("2. Cerrar Sesión");
 
             opcionPaciente = scanner.nextInt();
             scanner.nextLine();
@@ -126,13 +125,6 @@ public class Clinica
                     menuCitas(scanner);
                     break;
                 case 2:
-                    System.out.println(" ");
-                    System.out.println(" ========== EXPEDIENTE DIGITAL ==========  ");
-                    System.out.println(" ----------------------------------------- ");
-                    System.out.println("Consultando historial clínico y tratamientos...");
-                    System.out.println(" ");
-                    break;
-                case 3:
                     System.out.println("Cerrando sesión...");
                     break;
                 default:

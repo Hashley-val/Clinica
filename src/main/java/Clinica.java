@@ -47,15 +47,48 @@ public class Clinica
 
     private static void MenuInicioSesion(Scanner scanner)
     {
+        System.out.println(" ");
+        System.out.println( " ============ INICIO DE SESIÓN =========== ");
+        System.out.println(" ------------------------------------------ ");
+        System.out.print("Ingresa Correo Electrónico: ");
+        String correo = scanner.nextLine();
+        System.out.print("Ingrese su contraseña: ");
+        String password = scanner.nextLine();
+
+        System.out.println(" ");
+        System.out.println(" ===== SELECCIONE UNA OPCIÓN =====");
+        System.out.print("Elige una opción: ");
+        System.out.println("1. Paciente");
+        System.out.println("2. Doctor");
+        System.out.println(" ");
+
+        int tipoUsuario = scanner.nextInt();
+        scanner.nextLine();
+
+        if (tipoUsuario == 1)
+        {
+            menuPaciente(scanner);
+        }
+        else
+        {
+            System.out.println("Acceso de Doctor (Módulos de administración).");
+        }
+
+    }
+
+    private static void menuPaciente(Scanner scanner)
+    {
         int opcionPaciente = 0;
-        while (opcionPaciente != 3) {
+        while (opcionPaciente != 3)
+        {
             System.out.println(" =================================== ");
             System.out.println("      MENÚ PRINCIPAL - PACIENTE   ");
             System.out.println(" =================================== ");
+            System.out.println(" ");
+            System.out.println(" Elige una opción: ");
             System.out.println("1. Gestión de Agenda y Citas (Agendar / Modificar / Cancelar)");
             System.out.println("2. Ver mi Expediente / Historia Clínica");
             System.out.println("3. Cerrar Sesión");
-            System.out.print("Elige una opción: ");
 
             opcionPaciente = scanner.nextInt();
             scanner.nextLine();
@@ -66,12 +99,17 @@ public class Clinica
                     menuCitas(scanner);
                     break;
                 case 2:
-                    System.out.println("[Expediente Digital]: Consultando historial clínico y tratamientos...");
+                    System.out.println(" ");
+                    System.out.println(" ========== EXPEDIENTE DIGITAL ==========  ");
+                    System.out.println(" ----------------------------------------- ");
+                    System.out.println("Consultando historial clínico y tratamientos...");
+                    System.out.println(" ");
                     break;
                 case 3:
-                    System.out.println("Cerrando sesión de paciente...");
+                    System.out.println("Cerrando sesión...");
                     break;
                 default:
+                    System.out.println(" ");
                     System.out.println("Opción no válida.");
             }
         }
@@ -79,7 +117,7 @@ public class Clinica
 
     private static void menuCitas(Scanner scanner)
     {
-
+        
     }
 
     private static void MenuRegistro(Scanner scanner)

@@ -71,6 +71,7 @@ public class Clinica
             String correo = scanner.nextLine();
             System.out.print("Ingrese su contraseña: ");
             String password = scanner.nextLine();
+            System.out.println(" ");
 
             menuPaciente(scanner);
         }
@@ -222,6 +223,12 @@ public class Clinica
                     System.out.println("* Endodoncia: $2,500");
                     System.out.println("* Extracción: $700");
                     System.out.println("* Limpieza: $500");
+                    System.out.println("* Resinas: $800");
+                    System.out.println("* Cirugía: $5,000");
+                    System.out.println("* Aplicación de flúor: $150");
+                    System.out.println("* Coronas: $4,500");
+                    System.out.println("* Panorámica y Rayos 'X': $500");
+                    System.out.println("* Curaciones: $400");
                     break;
                 case 3:
                     System.out.println("Regresando...");

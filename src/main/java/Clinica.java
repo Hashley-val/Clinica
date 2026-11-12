@@ -47,6 +47,39 @@ public class Clinica
 
     private static void MenuInicioSesion(Scanner scanner)
     {
+        int opcionPaciente = 0;
+        while (opcionPaciente != 3) {
+            System.out.println(" =================================== ");
+            System.out.println("      MENÚ PRINCIPAL - PACIENTE   ");
+            System.out.println(" =================================== ");
+            System.out.println("1. Gestión de Agenda y Citas (Agendar / Modificar / Cancelar)");
+            System.out.println("2. Ver mi Expediente / Historia Clínica");
+            System.out.println("3. Cerrar Sesión");
+            System.out.print("Elige una opción: ");
+
+            opcionPaciente = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (opcionPaciente)
+            {
+                case 1:
+                    menuCitas(scanner);
+                    break;
+                case 2:
+                    System.out.println("[Expediente Digital]: Consultando historial clínico y tratamientos...");
+                    break;
+                case 3:
+                    System.out.println("Cerrando sesión de paciente...");
+                    break;
+                default:
+                    System.out.println("Opción no válida.");
+            }
+        }
+    }
+
+    private static void menuCitas(Scanner scanner)
+    {
+
     }
 
     private static void MenuRegistro(Scanner scanner)
@@ -81,6 +114,7 @@ public class Clinica
         {
             System.out.println(" ");
             System.out.println("¡Registro exitoso! Bienvenido a DentalConnect, " + nombres + " " + apellidos + ".");
+            System.out.println(" ");
         }
         else
         {

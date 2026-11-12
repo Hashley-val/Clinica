@@ -101,6 +101,40 @@ public class Clinica
 
     private static void MenuDoctor(Scanner scanner)
     {
+        int opcionDoctor = 0;
+        while (opcionDoctor != 5)
+        {
+            System.out.println(" ");
+            System.out.println(" ====================================== ");
+            System.out.println("      MENÚ DE ADMINISTRACIÓN - DOCTOR   ");
+            System.out.println(" ====================================== ");
+            System.out.println(" ");
+            System.out.println(" Elige una opción: ");
+            System.out.println("1. Agenda y Citas (Ver Ocupados / Cancelar Cita)");
+            System.out.println("2. Expediente Digital e Historial Clinico");
+            System.out.println("3. Catalogo de Servicios y Precios (Modificar)");
+            System.out.println("4. Gestion de Pagos ");
+            System.out.println("5. Cerrar Sesión ");
+
+            opcionDoctor = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (opcionDoctor)
+            {
+                case 1:
+                    System.out.println("          ======== AGENDA Y CITAS =======          ");
+                    System.out.println(" ------------------------------------------------- ");
+                    System.out.println(" *--- Dias y Horas ocupadas, Días de Descanso ---* ");
+                    System.out.println(" *--- Cancelar citas ---* ");
+                    break;
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                default:
+
+            }
+        }
     }
 
     private static void menuPaciente(Scanner scanner)
@@ -108,6 +142,7 @@ public class Clinica
         int opcionPaciente = 0;
         while (opcionPaciente != 3)
         {
+            System.out.println(" ");
             System.out.println(" =================================== ");
             System.out.println("      MENÚ PRINCIPAL - PACIENTE   ");
             System.out.println(" =================================== ");
@@ -115,6 +150,7 @@ public class Clinica
             System.out.println(" Elige una opción: ");
             System.out.println("1. Agenda y Citas (Agendar / Modificar / Cancelar)");
             System.out.println("2. Cerrar Sesión");
+            System.out.println(" ");
 
             opcionPaciente = scanner.nextInt();
             scanner.nextLine();

@@ -1,6 +1,17 @@
 import java.util.Scanner;
 public class Clinica
 {
+
+
+    static String[] tratamientos =
+            {
+                    "Ortodoncia", "Endodoncia", "Extracción", "Limpieza",
+                    "Resinas", "Cirugía", "Aplicación de flúor", "Coronas",
+                    "Rayos X", "Curaciones"
+            };
+
+    static int[] precios = {15000, 2500, 700, 500, 800, 5000, 150, 4500, 800, 400};
+
     public static void main(String[] args)
     {
         Scanner scanner = new Scanner(System.in);
@@ -128,9 +139,13 @@ public class Clinica
                     System.out.println(" *--- Cancelar citas ---* ");
                     break;
                 case 2:
+                    break;
                 case 3:
+                    break;
                 case 4:
+                    break;
                 case 5:
+                    break;
                 default:
 
             }
@@ -148,7 +163,7 @@ public class Clinica
             System.out.println(" =================================== ");
             System.out.println(" ");
             System.out.println(" Elige una opción: ");
-            System.out.println("1. Agenda y Citas (Agendar / Modificar / Cancelar)");
+            System.out.println("1. Agenda y Citas ");
             System.out.println("2. Cerrar Sesión");
             System.out.println(" ");
 
@@ -172,13 +187,13 @@ public class Clinica
 
     private static void menuCitas(Scanner scanner)
     {
-        
+
     }
 
     private static void MenuRegistro(Scanner scanner)
     {
         System.out.println(" ");
-        System.out.println(" ====== MÓDULO DE REGISTRO ======");
+        System.out.println(" ====== REGISTRO ======");
         System.out.println(" --------------------------------");
         System.out.println(" ");
         System.out.print("Ingresa tu Nombre(s): ");
@@ -247,16 +262,8 @@ public class Clinica
                     System.out.println(" ");
                     System.out.println(" ==== CATÁLOGO DE SERVICIOS Y PRECIOS ==== ");
                     System.out.println(" ----------------------------------------- ");
-                    System.out.println("* Ortodoncia: $15,000");
-                    System.out.println("* Endodoncia: $2,500");
-                    System.out.println("* Extracción: $700");
-                    System.out.println("* Limpieza: $500");
-                    System.out.println("* Resinas: $800");
-                    System.out.println("* Cirugía: $5,000");
-                    System.out.println("* Aplicación de flúor: $150");
-                    System.out.println("* Coronas: $4,500");
-                    System.out.println("* Panorámica y Rayos 'X': $500");
-                    System.out.println("* Curaciones: $400");
+                    ordenarBurbujaPorPrecio();
+                    imprimirCatalogoOrdenado();
                     break;
                 case 3:
                     System.out.println("Regresando...");
@@ -265,5 +272,39 @@ public class Clinica
                     System.out.println("Opción no válida.");
             }
         }
+    }
+    private static void ordenarBurbujaPorPrecio()
+    {
+        int auxPrecio = 0;
+        String auxTratamiento = "";
+
+        for (int x = 0; x < precios.length; x++)
+        {
+            for (int y = x + 1; y < precios.length; y++)
+            {
+                if (precios[x] > precios[y])
+                {
+                    auxPrecio = precios[x];
+                    precios[x] = precios[y];
+                    precios[y] = auxPrecio;
+
+                    auxTratamiento = tratamientos[x];
+                    tratamientos[x] = tratamientos[y];
+                    tratamientos[y] = auxTratamiento;
+                }
+            }
+        }
+    }
+
+    private static void imprimirCatalogoOrdenado()
+    {
+        System.out.println("----------------------------------------");
+        System.out.println("TRATAMIENTO              | PRECIO");
+        System.out.println("----------------------------------------");
+        for (int x = 0; x < precios.length; x++)
+        {
+            System.out.printf("%-25s | $%d\n", tratamientos[x], precios[x]);
+        }
+        System.out.println("----------------------------------------");
     }
 }

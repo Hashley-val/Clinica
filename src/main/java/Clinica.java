@@ -3,8 +3,24 @@ public class Clinica
 {
     static String[] tratamientos =
             {"Ortodoncia", "Endodoncia", "Extracción", "Limpieza", "Resinas", "Cirugía", "Aplicación de flúor", "Coronas", "Rayos X", "Curaciones"};
-
     static int[] precios = {15000, 2500, 700, 500, 800, 5000, 150, 4500, 800, 400};
+    static int capacidadMaxima = 50;
+    static String[] nombresPacientes = new String[capacidadMaxima];
+    static String[] correosPacientes = new String[capacidadMaxima];
+    static String[] passwordsPacientes = new String[capacidadMaxima];
+    static int totalPacientes = 0;
+    static String[] nombresCitas = new String[capacidadMaxima];
+    static int[] diasCitas = new int[capacidadMaxima];
+    static String[] motivosCitas = new String[capacidadMaxima];
+    static int totalCitas = 0;
+    static String[][] calendario =
+            {
+                    {" [1] ", " [2] ", " [3] ", " [4] ", " [5] ", " [6] ", " [7] "},
+                    {" [8] ", " [9] ", "[10] ", "[11] ", "[12] ", "[13] ", "[14] "},
+                    {"[15] ", "[16] ", "[17] ", "[18] ", "[19] ", "[20] ", "[21] "},
+                    {"[22] ", "[23] ", "[24] ", "[25] ", "[26] ", "[27] ", "[28] "},
+                    {"[29] ", "[30] ", "[31] ", "  -  ", "  -  ", "  -  ", "  -  "}
+            };
 
     public static void main(String[] args)
     {
@@ -67,18 +83,34 @@ public class Clinica
 
         if (tipoUsuario == 1)
         {
-            System.out.println(" ===== PACIENTE ===== ");
-            System.out.println(" -------------------- ");
-            System.out.println(" ");
-            System.out.print("Ingresa tu Nombre(s) y apellidos: ");
-            String nombres = scanner.nextLine();
+            System.out.println(" ===== PACIENTE (LOGIN) ===== ");
+            System.out.println(" ---------------------------- ");
             System.out.print("Ingresa Correo Electrónico: ");
-            String correo = scanner.nextLine();
+            String correoIngresado = scanner.nextLine();
             System.out.print("Ingrese su contraseña: ");
-            String password = scanner.nextLine();
+            String passwordIngresado = scanner.nextLine();
             System.out.println(" ");
 
-            menuPaciente(scanner);
+            boolean loginExitoso = false;
+            for (int i = 0; i < totalPacientes; i++)
+            {
+                if (correosPacientes[i].equals(correoIngresado) && passwordsPacientes[i].equals(passwordIngresado))
+                {
+                    loginExitoso = true;
+                    System.out.println("¡Bienvenido de nuevo, " + nombresPacientes[i] + "!");
+                    break;
+                }
+            }
+
+            if (loginExitoso)
+            {
+                menuPaciente(scanner);
+            }
+            else
+            {
+                System.out.println("Error: Correo o contraseña incorrectos, o usuario no registrado.");
+                System.out.println("Por favor, ve a la opción '2. Registrarse' en el menú principal.");
+            }
         }
         else if (tipoUsuario == 2)
         {
@@ -104,7 +136,6 @@ public class Clinica
         }
 
     }
-
     private static void MenuDoctor(Scanner scanner)
     {
         int opcionDoctor = 0;
@@ -117,7 +148,7 @@ public class Clinica
             System.out.println(" ");
             System.out.println(" Elige una opción: ");
             System.out.println(" ");
-            System.out.println("1. Agenda y Citas (Ver Ocupados / Cancelar Cita)");
+            System.out.println("1. Ver Citas Registradas en el Sistema");
             System.out.println("2. Expediente Digital e Historial Clínico");
             System.out.println("3. Catalogo de Servicios y Precios (Modificar)");
             System.out.println("4. Gestion de Pagos ");
@@ -129,10 +160,19 @@ public class Clinica
             switch (opcionDoctor)
             {
                 case 1:
-                    System.out.println("          ======== AGENDA Y CITAS =======          ");
-                    System.out.println(" ------------------------------------------------- ");
-                    System.out.println(" *--- Días y Horas ocupadas, Días de Descanso ---* ");
-                    System.out.println(" *--- Cancelar citas ---* ");
+                    System.out.println("          ======== CITAS REGISTRADAS =======          ");
+                    System.out.println(" ---------------------------------------------------- ");
+                    if (totalCitas == 0)
+                    {
+                        System.out.println("No hay citas agendadas todavía.");
+                    }
+                    else
+                    {
+                        for (int i = 0; i < totalCitas; i++)
+                        {
+                            System.out.println("- Paciente: " + nombresCitas[i] + " | Día: " + diasCitas[i] + " | Motivo: " + motivosCitas[i]);
+                        }
+                    }
                     break;
                 case 2:
                     break;
@@ -156,7 +196,7 @@ public class Clinica
         {
             System.out.println(" ");
             System.out.println(" =================================== ");
-            System.out.println("      MENÚ PRINCIPAL - PACIENTE   ");
+            System.out.println("             MENÚ PRINCIPAL    ");
             System.out.println(" =================================== ");
             System.out.println(" ");
             System.out.println(" Elige una opción: ");
@@ -181,18 +221,11 @@ public class Clinica
             }
         }
     }
+
     private static void menuCitas(Scanner scanner)
     {
         int opcionCita = 0;
 
-        String[][] calendario =
-                {
-                  {" [1] ", " [2] ", " [3] ", " [4] ", " [5] ", " [6] ", " [7] "},
-                  {" [8] ", " [9] ", "[10] ", "[11] ", "[12] ", "[13] ", "[14] "},
-                  {"[15] ", "[16] ", "[17] ", "[18] ", "[19] ", "[20] ", "[21] "},
-                  {"[22] ", "[23] ", "[24] ", "[25] ", "[26] ", "[27] ", "[28] "},
-                  {"[29] ", "[30] ", "[31] ", "  -  ", "  -  ", "  -  ", "  -  "}
-                };
         while (opcionCita != 4)
         {
             System.out.println(" ");
@@ -201,7 +234,7 @@ public class Clinica
             System.out.println(" Elige una opción: ");
             System.out.println(" 1. Ver Calendario");
             System.out.println(" 2. Agendar Cita");
-            System.out.println(" 3. Cancelar / Modificar Cita");
+            System.out.println(" 3. Ver mis Citas Agendadas");
             System.out.println(" 4. Regresar al menú");
 
             opcionCita = scanner.nextInt();
@@ -227,31 +260,105 @@ public class Clinica
                     break;
                 case 2:
                     System.out.println("==== AGENDAR CITA ====");
-                    System.out.print(" ");
-                    System.out.print("Ingresa tu Nombre: ");
-                    String nombreCita = scanner.nextLine();
+                    System.out.print("Ingresa tu Correo Electrónico (para verificar registro): ");
+                    String correoVerifica = scanner.nextLine();
+                    System.out.print("Ingresa tu Contraseña: ");
+                    String passVerifica = scanner.nextLine();
+
+                    boolean registrado = false;
+                    String nombrePacienteEncontrado = "";
+                    for (int i = 0; i < totalPacientes; i++)
+                    {
+                        if (correosPacientes[i].equals(correoVerifica) && passwordsPacientes[i].equals(passVerifica))
+                        {
+                            registrado = true;
+                            nombrePacienteEncontrado = nombresPacientes[i];
+                            break;
+                        }
+                    }
+
+                    if (!registrado)
+                    {
+                        System.out.println("\n[AVISO]: No estás registrado en el sistema.");
+                        System.out.println("Por favor, regístrate en el menú principal antes de agendar una cita.");
+                        break;
+                    }
+
                     System.out.print("Ingresa el número de día del calendario (1 al 31): ");
                     int diaCita = scanner.nextInt();
                     scanner.nextLine();
-                    System.out.print("Motivo de la consulta: ");
-                    String motivo = scanner.nextLine();
-                    System.out.println("¡Cita agendada con éxito para " + nombreCita + " el día " + diaCita + "!");
-                    System.out.print(" ");
+
+                    boolean diaOcupado = false;
+                    for (int i = 0; i < totalCitas; i++)
+                    {
+                        if (diasCitas[i] == diaCita)
+                        {
+                            diaOcupado = true;
+                            break;
+                        }
+                    }
+
+                    if (diaOcupado)
+                    {
+                        System.out.println("¡Lo siento! El día " + diaCita + " ya se encuentra OCUPADO. Elija otra fecha.");
+                    }
+                    else
+                    {
+                        System.out.print("Motivo de la consulta: ");
+                        String motivo = scanner.nextLine();
+
+                        if (totalCitas < capacidadMaxima)
+                        {
+                            nombresCitas[totalCitas] = nombrePacienteEncontrado;
+                            diasCitas[totalCitas] = diaCita;
+                            motivosCitas[totalCitas] = motivo;
+                            totalCitas++;
+
+                            actualizarCalendarioOcupado(diaCita);
+
+                            System.out.println("¡Cita agendada con éxito para " + nombrePacienteEncontrado + " el día " + diaCita + "!");
+                        }
+                        else
+                        {
+                            System.out.println("Capacidad de citas llena.");
+                        }
+                    }
                     break;
                 case 3:
-                    System.out.println(" ====== CANCELAR / MODIFICAR CITA ======");
-                    System.out.print(" ");
-                    System.out.print("Ingresa el número de día de tu cita: ");
-                    int diaMod = scanner.nextInt();
-                    scanner.nextLine();
-                    System.out.println("Su cita del día " + diaMod + " ha sido actualizada/cancelada correctamente.");
-                    System.out.print(" ");
+                    System.out.println(" ====== MIS CITAS AGENDADAS ======");
+                    if (totalCitas == 0)
+                    {
+                        System.out.println("No tienes citas registradas.");
+                    }
+                    else
+                    {
+                        for(int k=0; k<totalCitas; k++)
+                        {
+                            System.out.println("Cita #" + (k+1) + " - Nombre: " + nombresCitas[k] + " | Día: " + diasCitas[k] + " | Motivo: " + motivosCitas[k]);
+                        }
+                    }
                     break;
                 case 4:
                     System.out.println("Regresando...");
                     break;
                 default:
                     System.out.println("Opción no válida.");
+            }
+        }
+    }
+    private static void actualizarCalendarioOcupado(int dia)
+    {
+        String diaBuscado = (dia < 10) ? " [" + dia + "] " : "[" + dia + "] ";
+        String diaOcupadoStr = (dia < 10) ? " [X] " : "[X]  ";
+
+        for (int i = 0; i < calendario.length; i++)
+        {
+            for (int j = 0; j < calendario[i].length; j++)
+            {
+                if (calendario[i][j].trim().equals(String.valueOf(dia)) || calendario[i][j].contains("[" + dia + "]"))
+                {
+                    calendario[i][j] = diaOcupadoStr;
+                }
             }
         }
     }
@@ -274,9 +381,6 @@ public class Clinica
         System.out.print("Ingresa Correo Electrónico: ");
         String correo = scanner.nextLine();
         System.out.println(" ");
-        System.out.print("Ingresa número de teléfono: ");
-        String telefono = scanner.nextLine();
-        System.out.println(" ");
         System.out.print("Ingresa una contraseña: ");
         String password = scanner.nextLine();
         System.out.println(" ");
@@ -286,9 +390,21 @@ public class Clinica
 
         if (password.equals(confirmarPassword))
         {
-            System.out.println(" ");
-            System.out.println("¡Registro exitoso! Bienvenido a DentalConnect, " + nombres + " " + apellidos + ".");
-            System.out.println(" ");
+            if (totalPacientes < capacidadMaxima)
+            {
+                nombresPacientes[totalPacientes] = nombres + " " + apellidos;
+                correosPacientes[totalPacientes] = correo;
+                passwordsPacientes[totalPacientes] = password;
+                totalPacientes++;
+
+                System.out.println(" ");
+                System.out.println("¡Registro exitoso! Bienvenido a DentalConnect, " + nombres + " " + apellidos + ".");
+                System.out.println(" ");
+            }
+            else
+            {
+                System.out.println("Límite de registros alcanzado.");
+            }
         }
         else
         {
@@ -361,7 +477,6 @@ public class Clinica
             }
         }
     }
-
     private static void imprimirCatalogoOrdenado()
     {
         System.out.println("----------------------------------------");

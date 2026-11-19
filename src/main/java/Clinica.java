@@ -1,14 +1,8 @@
 import java.util.Scanner;
 public class Clinica
 {
-
-
     static String[] tratamientos =
-            {
-                    "Ortodoncia", "Endodoncia", "Extracción", "Limpieza",
-                    "Resinas", "Cirugía", "Aplicación de flúor", "Coronas",
-                    "Rayos X", "Curaciones"
-            };
+            {"Ortodoncia", "Endodoncia", "Extracción", "Limpieza", "Resinas", "Cirugía", "Aplicación de flúor", "Coronas", "Rayos X", "Curaciones"};
 
     static int[] precios = {15000, 2500, 700, 500, 800, 5000, 150, 4500, 800, 400};
 

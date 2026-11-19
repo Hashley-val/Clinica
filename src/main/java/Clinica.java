@@ -69,9 +69,9 @@ public class Clinica
         {
             System.out.println(" ===== PACIENTE ===== ");
             System.out.println(" -------------------- ");
+            System.out.println(" ");
             System.out.print("Ingresa tu Nombre(s) y apellidos: ");
             String nombres = scanner.nextLine();
-            System.out.println(" ");
             System.out.print("Ingresa Correo Electrónico: ");
             String correo = scanner.nextLine();
             System.out.print("Ingrese su contraseña: ");
@@ -84,9 +84,10 @@ public class Clinica
         {
             System.out.println(" ===== DOCTOR ===== ");
             System.out.println(" -------------------- ");
+            System.out.println(" ");
             System.out.print("Ingresa tu Nombre(s) y apellidos: ");
             String nombreDoctor = scanner.nextLine();
-            System.out.print("Ingresa Cédula Profecional: ");
+            System.out.print("Ingresa Cédula Profesional: ");
             String cedulaDoctor = scanner.nextLine();
             System.out.print("Ingresa Correo Electrónico: ");
             String correoDoctor = scanner.nextLine();
@@ -94,7 +95,7 @@ public class Clinica
             String passwordDoctor = scanner.nextLine();
             System.out.println(" ");
 
-            System.out.println(" Bienvenido Dr(a)" + nombreDoctor + "( Cédula:" + cedulaDoctor + ")!");
+            System.out.println(" Bienvenido Dr(a) " + nombreDoctor + " (Cédula: " + cedulaDoctor + ")!");
             MenuDoctor(scanner);
         }
         else
@@ -115,8 +116,9 @@ public class Clinica
             System.out.println(" ====================================== ");
             System.out.println(" ");
             System.out.println(" Elige una opción: ");
+            System.out.println(" ");
             System.out.println("1. Agenda y Citas (Ver Ocupados / Cancelar Cita)");
-            System.out.println("2. Expediente Digital e Historial Clinico");
+            System.out.println("2. Expediente Digital e Historial Clínico");
             System.out.println("3. Catalogo de Servicios y Precios (Modificar)");
             System.out.println("4. Gestion de Pagos ");
             System.out.println("5. Cerrar Sesión ");
@@ -129,7 +131,7 @@ public class Clinica
                 case 1:
                     System.out.println("          ======== AGENDA Y CITAS =======          ");
                     System.out.println(" ------------------------------------------------- ");
-                    System.out.println(" *--- Dias y Horas ocupadas, Días de Descanso ---* ");
+                    System.out.println(" *--- Días y Horas ocupadas, Días de Descanso ---* ");
                     System.out.println(" *--- Cancelar citas ---* ");
                     break;
                 case 2:
@@ -139,9 +141,10 @@ public class Clinica
                 case 4:
                     break;
                 case 5:
+                    System.out.println("Cerrando sesión de doctor...");
                     break;
                 default:
-
+                    System.out.println("Opción incorrecta... Intente nuevamente");
             }
         }
     }
@@ -149,7 +152,7 @@ public class Clinica
     private static void menuPaciente(Scanner scanner)
     {
         int opcionPaciente = 0;
-        while (opcionPaciente != 3)
+        while (opcionPaciente != 2)
         {
             System.out.println(" ");
             System.out.println(" =================================== ");
@@ -157,7 +160,7 @@ public class Clinica
             System.out.println(" =================================== ");
             System.out.println(" ");
             System.out.println(" Elige una opción: ");
-            System.out.println("1. Agenda y Citas ");
+            System.out.println("1. Agenda y Citas (Ver Calendario / Agendar)");
             System.out.println("2. Cerrar Sesión");
             System.out.println(" ");
 
@@ -178,10 +181,79 @@ public class Clinica
             }
         }
     }
-
     private static void menuCitas(Scanner scanner)
     {
+        int opcionCita = 0;
 
+        String[][] calendario =
+                {
+                  {" [1] ", " [2] ", " [3] ", " [4] ", " [5] ", " [6] ", " [7] "},
+                  {" [8] ", " [9] ", "[10] ", "[11] ", "[12] ", "[13] ", "[14] "},
+                  {"[15] ", "[16] ", "[17] ", "[18] ", "[19] ", "[20] ", "[21] "},
+                  {"[22] ", "[23] ", "[24] ", "[25] ", "[26] ", "[27] ", "[28] "},
+                  {"[29] ", "[30] ", "[31] ", "  -  ", "  -  ", "  -  ", "  -  "}
+                };
+        while (opcionCita != 4)
+        {
+            System.out.println(" ");
+            System.out.println("========= GESTIÓN DE AGENDA Y CITAS ==========");
+            System.out.println(" ");
+            System.out.println(" Elige una opción: ");
+            System.out.println(" 1. Ver Calendario");
+            System.out.println(" 2. Agendar Cita");
+            System.out.println(" 3. Cancelar / Modificar Cita");
+            System.out.println(" 4. Regresar al menú");
+
+            opcionCita = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (opcionCita)
+            {
+                case 1:
+                    System.out.print(" ");
+                    System.out.println("====== CALENDARIO DE CITAS  ======");
+                    System.out.println(" Lun   Mar   Mié   Jue   Vie   Sáb   Dom");
+                    System.out.println("----------------------------------------");
+
+                    for (int i = 0; i < calendario.length; i++)
+                    {
+                        for (int j = 0; j < calendario[i].length; j++)
+                        {
+                            System.out.print(calendario[i][j] + " ");
+                        }
+                        System.out.println();
+                    }
+                    System.out.println("----------------------------------------");
+                    break;
+                case 2:
+                    System.out.println("==== AGENDAR CITA ====");
+                    System.out.print(" ");
+                    System.out.print("Ingresa tu Nombre: ");
+                    String nombreCita = scanner.nextLine();
+                    System.out.print("Ingresa el número de día del calendario (1 al 31): ");
+                    int diaCita = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.print("Motivo de la consulta: ");
+                    String motivo = scanner.nextLine();
+                    System.out.println("¡Cita agendada con éxito para " + nombreCita + " el día " + diaCita + "!");
+                    System.out.print(" ");
+                    break;
+                case 3:
+                    System.out.println(" ====== CANCELAR / MODIFICAR CITA ======");
+                    System.out.print(" ");
+                    System.out.print("Ingresa el número de día de tu cita: ");
+                    int diaMod = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.println("Su cita del día " + diaMod + " ha sido actualizada/cancelada correctamente.");
+                    System.out.print(" ");
+                    break;
+                case 4:
+                    System.out.println("Regresando...");
+                    break;
+                default:
+                    System.out.println("Opción no válida.");
+            }
+        }
     }
 
     private static void MenuRegistro(Scanner scanner)
